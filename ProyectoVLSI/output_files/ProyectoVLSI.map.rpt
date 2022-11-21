@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ProyectoVLSI
-Sun Nov 13 23:25:47 2022
+Mon Nov 21 14:57:48 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,13 +13,29 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |uart_rx|state_reg
-  9. General Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Parameter Settings for User Entity Instance: Top-level Entity: |uart_rx
- 12. Post-Synthesis Netlist Statistics for Top Partition
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
+  8. State Machine - |kb_test|uart:uart_unit|uart_tx:uart_tx_unit|state_reg
+  9. State Machine - |kb_test|uart:uart_unit|uart_rx:uart_rx_unit|state_reg
+ 10. State Machine - |kb_test|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: kb_code:kb_code_unit
+ 16. Parameter Settings for User Entity Instance: kb_code:kb_code_unit|fifo:fifo_key_unit
+ 17. Parameter Settings for User Entity Instance: uart:uart_unit
+ 18. Parameter Settings for User Entity Instance: uart:uart_unit|mod_m_counter:baud_gen_unit
+ 19. Parameter Settings for User Entity Instance: uart:uart_unit|uart_rx:uart_rx_unit
+ 20. Parameter Settings for User Entity Instance: uart:uart_unit|fifo:fifo_rx_unit
+ 21. Parameter Settings for User Entity Instance: uart:uart_unit|fifo:fifo_tx_unit
+ 22. Parameter Settings for User Entity Instance: uart:uart_unit|uart_tx:uart_tx_unit
+ 23. Port Connectivity Checks: "uart:uart_unit|fifo:fifo_rx_unit"
+ 24. Port Connectivity Checks: "uart:uart_unit|mod_m_counter:baud_gen_unit"
+ 25. Port Connectivity Checks: "uart:uart_unit"
+ 26. Port Connectivity Checks: "kb_code:kb_code_unit|fifo:fifo_key_unit"
+ 27. Port Connectivity Checks: "kb_code:kb_code_unit|ps2_rx:ps2_rx_unit"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
 
 
 
@@ -45,16 +61,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Nov 13 23:25:47 2022       ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 21 14:57:48 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; ProyectoVLSI                                ;
-; Top-level Entity Name              ; uart_rx                                     ;
+; Top-level Entity Name              ; kb_test                                     ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 36                                          ;
-;     Total combinational functions  ; 28                                          ;
-;     Dedicated logic registers      ; 19                                          ;
-; Total registers                    ; 19                                          ;
-; Total pins                         ; 13                                          ;
+; Total logic elements               ; 0                                           ;
+;     Total combinational functions  ; 0                                           ;
+;     Dedicated logic registers      ; 0                                           ;
+; Total registers                    ; 0                                           ;
+; Total pins                         ; 5                                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -70,7 +86,7 @@ refer to the applicable agreement for further details.
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; 10M50DAF484C7G     ;                    ;
-; Top-level entity name                                            ; uart_rx            ; ProyectoVLSI       ;
+; Top-level entity name                                            ; kb_test            ; ProyectoVLSI       ;
 ; Family name                                                      ; MAX 10             ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -159,21 +175,28 @@ refer to the applicable agreement for further details.
 ; Maximum allowed            ; 2           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                     ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                              ; Library ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
-; uart_rx.vhd                      ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart_rx.vhd ;         ;
-+----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                           ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                    ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
+; mod_m_counter.vhd                ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/mod_m_counter.vhd ;         ;
+; fifo.vhd                         ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/fifo.vhd          ;         ;
+; uart_rx.vhd                      ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart_rx.vhd       ;         ;
+; uart_tx.vhd                      ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart_tx.vhd       ;         ;
+; uart.vhd                         ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart.vhd          ;         ;
+; ps2_rx.vhd                       ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/ps2_rx.vhd        ;         ;
+; kb_code.vhd                      ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_code.vhd       ;         ;
+; key2ascii.vhd                    ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/key2ascii.vhd     ;         ;
+; kb_test.vhd                      ; yes             ; User VHDL File  ; D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd       ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -181,30 +204,29 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 36        ;
 ;                                             ;           ;
-; Total combinational functions               ; 28        ;
+; Total combinational functions               ; 0         ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 17        ;
-;     -- 3 input functions                    ; 10        ;
-;     -- <=2 input functions                  ; 1         ;
+;     -- 4 input functions                    ; 0         ;
+;     -- 3 input functions                    ; 0         ;
+;     -- <=2 input functions                  ; 0         ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 28        ;
+;     -- normal mode                          ; 0         ;
 ;     -- arithmetic mode                      ; 0         ;
 ;                                             ;           ;
-; Total registers                             ; 19        ;
-;     -- Dedicated logic registers            ; 19        ;
+; Total registers                             ; 0         ;
+;     -- Dedicated logic registers            ; 0         ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 13        ;
+; I/O pins                                    ; 5         ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
-; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 19        ;
-; Total fan-out                               ; 187       ;
-; Average fan-out                             ; 2.56      ;
+; Maximum fan-out node                        ; tx~output ;
+; Maximum fan-out                             ; 1         ;
+; Total fan-out                               ; 5         ;
+; Average fan-out                             ; 0.50      ;
 +---------------------------------------------+-----------+
 
 
@@ -213,14 +235,14 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |uart_rx                   ; 28 (28)             ; 19 (19)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 13   ; 0            ; 0          ; |uart_rx            ; uart_rx     ; work         ;
+; |kb_test                   ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 5    ; 0            ; 0          ; |kb_test            ; kb_test     ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
 +--------------------------------------------------------------------------------------+
-; State Machine - |uart_rx|state_reg                                                   ;
+; State Machine - |kb_test|uart:uart_unit|uart_tx:uart_tx_unit|state_reg               ;
 +-----------------+----------------+----------------+-----------------+----------------+
 ; Name            ; state_reg.stop ; state_reg.data ; state_reg.start ; state_reg.idle ;
 +-----------------+----------------+----------------+-----------------+----------------+
@@ -231,41 +253,435 @@ Encoding Type:  One-Hot
 +-----------------+----------------+----------------+-----------------+----------------+
 
 
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------+
+; State Machine - |kb_test|uart:uart_unit|uart_rx:uart_rx_unit|state_reg               ;
++-----------------+----------------+----------------+-----------------+----------------+
+; Name            ; state_reg.stop ; state_reg.data ; state_reg.start ; state_reg.idle ;
++-----------------+----------------+----------------+-----------------+----------------+
+; state_reg.idle  ; 0              ; 0              ; 0               ; 0              ;
+; state_reg.start ; 0              ; 0              ; 1               ; 1              ;
+; state_reg.data  ; 0              ; 1              ; 0               ; 1              ;
+; state_reg.stop  ; 1              ; 0              ; 0               ; 1              ;
++-----------------+----------------+----------------+-----------------+----------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------+
+; State Machine - |kb_test|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg ;
++----------------+----------------+---------------+--------------------------+
+; Name           ; state_reg.load ; state_reg.dps ; state_reg.idle           ;
++----------------+----------------+---------------+--------------------------+
+; state_reg.idle ; 0              ; 0             ; 0                        ;
+; state_reg.dps  ; 0              ; 1             ; 1                        ;
+; state_reg.load ; 1              ; 0             ; 1                        ;
++----------------+----------------+---------------+--------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                      ;
++----------------------------------------------------------+--------------------------------------------------------------+
+; Register name                                            ; Reason for Removal                                           ;
++----------------------------------------------------------+--------------------------------------------------------------+
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][7]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][7]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][7]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][7]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[7]             ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[8]         ; Stuck at GND due to stuck port clock_enable                  ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[9,10]      ; Lost fanout                                                  ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[1..7]      ; Stuck at GND due to stuck port clock_enable                  ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][7]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][7]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][7]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][7]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][6]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][6]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][6]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][6]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][5]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][5]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][5]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][5]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][4]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][4]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][4]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][4]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][3]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][3]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][3]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][3]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][2]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][2]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][2]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][2]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][1]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][1]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][1]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][1]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][0]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][0]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][0]  ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][0]  ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][0]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][0]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][0]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][0]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][2]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][2]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][2]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][2]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][4]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][4]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][4]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][4]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][6]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][6]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][6]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][6]         ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[6]             ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|n_reg[1..3]      ; Stuck at GND due to stuck port clock_enable                  ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|n_reg[0]         ; Lost fanout                                                  ;
+; kb_code:kb_code_unit|state_reg                           ; Stuck at GND due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|w_ptr_reg[0,1]   ; Stuck at GND due to stuck port clock_enable                  ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|f_ps2c_reg       ; Lost fanout                                                  ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|filter_reg[0..7] ; Lost fanout                                                  ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|full_reg         ; Lost fanout                                                  ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][5]         ; Merged with uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][3] ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][3]         ; Merged with uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][1] ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][5]         ; Merged with uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][3] ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][3]         ; Merged with uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][1] ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][5]         ; Merged with uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][3] ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][3]         ; Merged with uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][1] ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][5]         ; Merged with uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][3] ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][3]         ; Merged with uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][1] ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg.idle   ; Lost fanout                                                  ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg.load   ; Lost fanout                                                  ;
+; uart:uart_unit|uart_rx:uart_rx_unit|s_reg[0..3]          ; Lost fanout                                                  ;
+; uart:uart_unit|uart_rx:uart_rx_unit|n_reg[0..2]          ; Lost fanout                                                  ;
+; uart:uart_unit|uart_rx:uart_rx_unit|state_reg.idle       ; Lost fanout                                                  ;
+; uart:uart_unit|uart_rx:uart_rx_unit|state_reg.start      ; Lost fanout                                                  ;
+; uart:uart_unit|uart_rx:uart_rx_unit|state_reg.data       ; Lost fanout                                                  ;
+; uart:uart_unit|uart_rx:uart_rx_unit|state_reg.stop       ; Lost fanout                                                  ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg.dps    ; Lost fanout                                                  ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|empty_reg        ; Stuck at VCC due to stuck port data_in                       ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|r_ptr_reg[0,1]   ; Stuck at GND due to stuck port clock_enable                  ;
+; uart:uart_unit|fifo:fifo_tx_unit|w_ptr_reg[0,1]          ; Stuck at GND due to stuck port clock_enable                  ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][1]         ; Stuck at GND due to stuck port clock_enable                  ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][1]         ; Stuck at GND due to stuck port clock_enable                  ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][1]         ; Stuck at GND due to stuck port clock_enable                  ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][1]         ; Stuck at GND due to stuck port clock_enable                  ;
+; uart:uart_unit|fifo:fifo_tx_unit|full_reg                ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[0..5]          ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|empty_reg               ; Stuck at VCC due to stuck port data_in                       ;
+; uart:uart_unit|fifo:fifo_tx_unit|r_ptr_reg[0,1]          ; Stuck at GND due to stuck port clock_enable                  ;
+; uart:uart_unit|uart_tx:uart_tx_unit|state_reg.start      ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|uart_tx:uart_tx_unit|state_reg.data       ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|uart_tx:uart_tx_unit|state_reg.stop       ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|uart_tx:uart_tx_unit|n_reg[0..2]          ; Lost fanout                                                  ;
+; uart:uart_unit|uart_tx:uart_tx_unit|state_reg.idle       ; Stuck at GND due to stuck port data_in                       ;
+; uart:uart_unit|uart_tx:uart_tx_unit|tx_reg               ; Stuck at VCC due to stuck port data_in                       ;
+; uart:uart_unit|uart_tx:uart_tx_unit|s_reg[0..3]          ; Lost fanout                                                  ;
+; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[0..7]   ; Lost fanout                                                  ;
+; Total Number of Removed Registers = 142                  ;                                                              ;
++----------------------------------------------------------+--------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                 ;
++--------------------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
+; Register name                                          ; Reason for Removal             ; Registers Removed due to This Register                                            ;
++--------------------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[8]       ; Stuck at GND                   ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[9],                                 ;
+;                                                        ; due to stuck port clock_enable ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[10],                                ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[7],                                 ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[6],                                 ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[5],                                 ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[4],                                 ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[3],                                 ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[2],                                 ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[1],                                 ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][7],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][7],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][7],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][7],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][6],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][6],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][6],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][6],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][5],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][5],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][5],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][5],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][4],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][4],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][4],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][4],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][3],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][3],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][3],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][3],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][2],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][2],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][2],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][2],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][1],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][1],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][1],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][1],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[0][0],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[1][0],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[2][0],                          ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|array_reg[3][0],                          ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][0],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][0],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][0],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][0],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][2],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][2],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][2],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][2],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][4],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][4],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][4],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][4],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][6],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][6],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][6],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][6], kb_code:kb_code_unit|state_reg, ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|full_reg,                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[0][1],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[1][1],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[2][1],                                 ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][1],                                 ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[4],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[3],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[2],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[1],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[0],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|tx_reg                                        ;
+; kb_code:kb_code_unit|fifo:fifo_key_unit|w_ptr_reg[0]   ; Stuck at GND                   ; kb_code:kb_code_unit|fifo:fifo_key_unit|empty_reg,                                ;
+;                                                        ; due to stuck port clock_enable ; kb_code:kb_code_unit|fifo:fifo_key_unit|r_ptr_reg[0],                             ;
+;                                                        ;                                ; kb_code:kb_code_unit|fifo:fifo_key_unit|r_ptr_reg[1],                             ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|empty_reg,                                       ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|r_ptr_reg[0],                                    ;
+;                                                        ;                                ; uart:uart_unit|fifo:fifo_tx_unit|r_ptr_reg[1],                                    ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|state_reg.data,                               ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|n_reg[2],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|n_reg[1],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|n_reg[0],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|s_reg[3],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|s_reg[2],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|s_reg[1],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|s_reg[0],                                     ;
+;                                                        ;                                ; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[7],                              ;
+;                                                        ;                                ; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[6],                              ;
+;                                                        ;                                ; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[5],                              ;
+;                                                        ;                                ; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[4],                              ;
+;                                                        ;                                ; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[1],                              ;
+;                                                        ;                                ; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[0]                               ;
+; uart:uart_unit|uart_rx:uart_rx_unit|s_reg[3]           ; Lost Fanouts                   ; uart:uart_unit|uart_rx:uart_rx_unit|s_reg[2],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_rx:uart_rx_unit|s_reg[1],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_rx:uart_rx_unit|s_reg[0],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_rx:uart_rx_unit|state_reg.idle,                               ;
+;                                                        ;                                ; uart:uart_unit|uart_rx:uart_rx_unit|state_reg.start,                              ;
+;                                                        ;                                ; uart:uart_unit|uart_rx:uart_rx_unit|state_reg.data,                               ;
+;                                                        ;                                ; uart:uart_unit|uart_rx:uart_rx_unit|state_reg.stop                                ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|f_ps2c_reg     ; Lost Fanouts                   ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|filter_reg[7],                            ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|filter_reg[6],                            ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|filter_reg[5],                            ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|filter_reg[4],                            ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|filter_reg[3],                            ;
+;                                                        ;                                ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|filter_reg[2]                             ;
+; uart:uart_unit|fifo:fifo_tx_unit|array_reg[3][7]       ; Stuck at GND                   ; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[7],                                     ;
+;                                                        ; due to stuck port data_in      ; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[6],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_tx:uart_tx_unit|b_reg[5],                                     ;
+;                                                        ;                                ; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[3]                               ;
+; uart:uart_unit|uart_rx:uart_rx_unit|n_reg[2]           ; Lost Fanouts                   ; uart:uart_unit|uart_rx:uart_rx_unit|n_reg[1],                                     ;
+;                                                        ;                                ; uart:uart_unit|uart_rx:uart_rx_unit|n_reg[0]                                      ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|n_reg[3]       ; Stuck at GND                   ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|n_reg[0]                                  ;
+;                                                        ; due to stuck port clock_enable ;                                                                                   ;
+; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg.idle ; Lost Fanouts                   ; kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg.dps                             ;
+; uart:uart_unit|uart_tx:uart_tx_unit|state_reg.stop     ; Stuck at GND                   ; uart:uart_unit|mod_m_counter:baud_gen_unit|r_reg[2]                               ;
+;                                                        ; due to stuck port data_in      ;                                                                                   ;
++--------------------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
+
+
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 19    ;
+; Total registers                              ; 0     ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 19    ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 8     ;
+; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |uart_rx|n_reg[2]          ;
-; 10:1               ; 4 bits    ; 24 LEs        ; 4 LEs                ; 20 LEs                 ; Yes        ; |uart_rx|s_reg[3]          ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; No         ; |uart_rx|Selector0         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------+
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |kb_test|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[4]     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |kb_test|kb_code:kb_code_unit|fifo:fifo_key_unit|r_ptr_reg[1] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |kb_test|uart:uart_unit|fifo:fifo_tx_unit|r_ptr_reg[0]        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |kb_test|uart:uart_unit|fifo:fifo_tx_unit|w_ptr_reg[1]        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |kb_test|kb_code:kb_code_unit|fifo:fifo_key_unit|w_ptr_reg[0] ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |kb_test|uart:uart_unit|uart_tx:uart_tx_unit|n_reg[2]         ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |kb_test|uart:uart_unit|uart_rx:uart_rx_unit|n_reg[2]         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |kb_test|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|n_reg[2]     ;
+; 8:1                ; 7 bits    ; 35 LEs        ; 21 LEs               ; 14 LEs                 ; Yes        ; |kb_test|uart:uart_unit|uart_tx:uart_tx_unit|b_reg[5]         ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |kb_test|uart:uart_unit|uart_tx:uart_tx_unit|s_reg[0]         ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 4 LEs                ; 20 LEs                 ; Yes        ; |kb_test|uart:uart_unit|uart_rx:uart_rx_unit|s_reg[1]         ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |kb_test|kb_code:kb_code_unit|fifo:fifo_key_unit|Mux7         ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |kb_test|uart:uart_unit|uart_tx:uart_tx_unit|Selector4        ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |kb_test|uart:uart_unit|uart_rx:uart_rx_unit|Selector3        ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |kb_test|uart:uart_unit|uart_tx:uart_tx_unit|Selector3        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |uart_rx ;
-+----------------+-------+------------------------------------------------+
-; Parameter Name ; Value ; Type                                           ;
-+----------------+-------+------------------------------------------------+
-; DBIT           ; 8     ; Signed Integer                                 ;
-; SB_TICK        ; 16    ; Signed Integer                                 ;
-+----------------+-------+------------------------------------------------+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: kb_code:kb_code_unit ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; w_size         ; 2     ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: kb_code:kb_code_unit|fifo:fifo_key_unit ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; b              ; 8     ; Signed Integer                                              ;
+; w              ; 2     ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart:uart_unit ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; dbit           ; 8     ; Signed Integer                     ;
+; sb_tick        ; 16    ; Signed Integer                     ;
+; dvsr           ; 163   ; Signed Integer                     ;
+; dvsr_bit       ; 8     ; Signed Integer                     ;
+; fifo_w         ; 2     ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart:uart_unit|mod_m_counter:baud_gen_unit ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; n              ; 8     ; Signed Integer                                                 ;
+; m              ; 163   ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart:uart_unit|uart_rx:uart_rx_unit ;
++----------------+-------+---------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                    ;
++----------------+-------+---------------------------------------------------------+
+; dbit           ; 8     ; Signed Integer                                          ;
+; sb_tick        ; 16    ; Signed Integer                                          ;
++----------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart:uart_unit|fifo:fifo_rx_unit ;
++----------------+-------+------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                 ;
++----------------+-------+------------------------------------------------------+
+; b              ; 8     ; Signed Integer                                       ;
+; w              ; 2     ; Signed Integer                                       ;
++----------------+-------+------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart:uart_unit|fifo:fifo_tx_unit ;
++----------------+-------+------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                 ;
++----------------+-------+------------------------------------------------------+
+; b              ; 8     ; Signed Integer                                       ;
+; w              ; 2     ; Signed Integer                                       ;
++----------------+-------+------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart:uart_unit|uart_tx:uart_tx_unit ;
++----------------+-------+---------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                    ;
++----------------+-------+---------------------------------------------------------+
+; dbit           ; 8     ; Signed Integer                                          ;
+; sb_tick        ; 16    ; Signed Integer                                          ;
++----------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart:uart_unit|fifo:fifo_rx_unit"                                                   ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; full ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart:uart_unit|mod_m_counter:baud_gen_unit"                                         ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart:uart_unit"                                                                         ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; rd_uart  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; rx       ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; tx_full  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; rx_empty ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; r_data   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "kb_code:kb_code_unit|fifo:fifo_key_unit"                                            ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; full ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Port Connectivity Checks: "kb_code:kb_code_unit|ps2_rx:ps2_rx_unit" ;
++-------+-------+----------+------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                  ;
++-------+-------+----------+------------------------------------------+
+; rx_en ; Input ; Info     ; Stuck at VCC                             ;
++-------+-------+----------+------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -273,18 +689,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 13                          ;
-; cycloneiii_ff         ; 19                          ;
-;     CLR               ; 11                          ;
-;     ENA CLR           ; 8                           ;
-; cycloneiii_lcell_comb ; 28                          ;
-;     normal            ; 28                          ;
-;         2 data inputs ; 1                           ;
-;         3 data inputs ; 10                          ;
-;         4 data inputs ; 17                          ;
+; boundary_port         ; 5                           ;
+; cycloneiii_lcell_comb ; 1                           ;
+;     normal            ; 1                           ;
+;         0 data inputs ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 3.00                        ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -293,7 +704,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -303,7 +714,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Nov 13 23:25:17 2022
+    Info: Processing started: Mon Nov 21 14:57:15 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ProyectoVLSI -c ProyectoVLSI
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -319,18 +730,47 @@ Info (12021): Found 2 design units, including 1 entities, in source file uart_rx
 Info (12021): Found 2 design units, including 1 entities, in source file uart_tx.vhd
     Info (12022): Found design unit 1: uart_tx-arch File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart_tx.vhd Line: 21
     Info (12023): Found entity 1: uart_tx File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart_tx.vhd Line: 5
-Info (12127): Elaborating entity "uart_rx" for the top level hierarchy
-Info (286030): Timing-Driven Synthesis is running
+Info (12021): Found 2 design units, including 1 entities, in source file uart.vhd
+    Info (12022): Found design unit 1: uart-str_arch File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart.vhd Line: 31
+    Info (12023): Found entity 1: uart File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file ps2_rx.vhd
+    Info (12022): Found design unit 1: ps2_rx-arch File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/ps2_rx.vhd Line: 14
+    Info (12023): Found entity 1: ps2_rx File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/ps2_rx.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file kb_code.vhd
+    Info (12022): Found design unit 1: kb_code-arch File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_code.vhd Line: 16
+    Info (12023): Found entity 1: kb_code File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_code.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file key2ascii.vhd
+    Info (12022): Found design unit 1: key2ascii-arch File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/key2ascii.vhd Line: 12
+    Info (12023): Found entity 1: key2ascii File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/key2ascii.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file kb_test.vhd
+    Info (12022): Found design unit 1: kb_test-arch File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 12
+    Info (12023): Found entity 1: kb_test File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 4
+Info (12127): Elaborating entity "kb_test" for the top level hierarchy
+Info (12129): Elaborating entity "kb_code" using architecture "A:arch" for hierarchy "kb_code:kb_code_unit" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 17
+Info (12129): Elaborating entity "ps2_rx" using architecture "A:arch" for hierarchy "kb_code:kb_code_unit|ps2_rx:ps2_rx_unit" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_code.vhd Line: 27
+Info (12129): Elaborating entity "fifo" using architecture "A:arch" for hierarchy "kb_code:kb_code_unit|fifo:fifo_key_unit" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_code.vhd Line: 33
+Info (12129): Elaborating entity "uart" using architecture "A:str_arch" for hierarchy "uart:uart_unit" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 22
+Info (12129): Elaborating entity "mod_m_counter" using architecture "A:arch" for hierarchy "uart:uart_unit|mod_m_counter:baud_gen_unit" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart.vhd Line: 40
+Info (12129): Elaborating entity "uart_rx" using architecture "A:arch" for hierarchy "uart:uart_unit|uart_rx:uart_rx_unit" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart.vhd Line: 44
+Info (12129): Elaborating entity "uart_tx" using architecture "A:arch" for hierarchy "uart:uart_unit|uart_tx:uart_tx_unit" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/uart.vhd Line: 59
+Info (12129): Elaborating entity "key2ascii" using architecture "A:arch" for hierarchy "key2ascii:key2a_unit" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 28
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "tx" is stuck at VCC File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 8
+Info (17049): 42 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 49 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 4 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "ps2c" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 7
+    Warning (15610): No output dependent on input pin "ps2d" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 7
+    Warning (15610): No output dependent on input pin "clk" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 6
+    Warning (15610): No output dependent on input pin "reset" File: D:/intelFPGA_lite/18.1/Proyectos/ProyectoVLSI/kb_test.vhd Line: 6
+Info (21057): Implemented 5 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
-    Info (21059): Implemented 9 output pins
-    Info (21061): Implemented 36 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4787 megabytes
-    Info: Processing ended: Sun Nov 13 23:25:47 2022
-    Info: Elapsed time: 00:00:30
-    Info: Total CPU time (on all processors): 00:00:53
+    Info (21059): Implemented 1 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 4798 megabytes
+    Info: Processing ended: Mon Nov 21 14:57:48 2022
+    Info: Elapsed time: 00:00:33
+    Info: Total CPU time (on all processors): 00:00:59
 
 

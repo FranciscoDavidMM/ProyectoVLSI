@@ -1,7 +1,20 @@
 
-State Machine - |uart_rx|state_reg
+State Machine - |kb_test|uart:uart_unit|uart_tx:uart_tx_unit|state_reg
 Name state_reg.stop state_reg.data state_reg.start state_reg.idle 
 state_reg.idle 0 0 0 0 
 state_reg.start 0 0 1 1 
 state_reg.data 0 1 0 1 
 state_reg.stop 1 0 0 1 
+
+State Machine - |kb_test|uart:uart_unit|uart_rx:uart_rx_unit|state_reg
+Name state_reg.stop state_reg.data state_reg.start state_reg.idle 
+state_reg.idle 0 0 0 0 
+state_reg.start 0 0 1 1 
+state_reg.data 0 1 0 1 
+state_reg.stop 1 0 0 1 
+
+State Machine - |kb_test|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg
+Name state_reg.load state_reg.dps state_reg.idle 
+state_reg.idle 0 0 0 
+state_reg.dps 0 1 1 
+state_reg.load 1 0 1 

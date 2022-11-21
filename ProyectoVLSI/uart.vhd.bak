@@ -1,0 +1,29 @@
+Library IEEE;
+USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
+
+Entity uart is
+	generic(
+		-- Default setting :
+		-- 19200 baud, 8 data bits, I stop bit, 2 ^ 2 FIFO
+		DBIT: integer 	:= 8;		-- # data bits
+		SB_TICK:integer:=16;		-- # ticks for stop bits, 16/24/32
+										-- for 1/1.5/2 stop bits
+		DVSR: integer 	:= 163;	-- baud rate divisor
+										-- DVSR = 50M/(16*baud rate)
+		DVSR_BIT:integer:=8;		-- # bits of DVSR
+		FIFO_W: integer :=2		-- # addr bits of FIFO
+										-- # words in FIFO = 2^FIFO_W
+	
+	);
+	
+	port(
+		clk, reset: in std_logic;
+		rd_uart, wr_uart: in std_logic;
+		rx: in std_logic;
+		w_data: in std_logic_vector(7 downto 0);
+		tx_full, rx_empty: out std_logic;
+		r_data: out std_logic_vector(7 downto 0);
+		tx: out std_logic
+	);
+End uart;
